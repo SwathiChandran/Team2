@@ -6,6 +6,9 @@ def database_connectivity():
 		database_name = database_name+".db"
 		conn = sqlite3.connect(database_name)
 		c= conn.cursor()
+		table_values = c.execute("SELECT * FROM movie")
+		for i in table_values:
+			print i
 		return conn
 	except Exception as error:
 		print error
@@ -15,9 +18,7 @@ if sample:
 else:
 		print "no"
 		
-		
-		
-# configuration file reading		
+# configuration file reading	 	
 
 def config_file_read():
 	try:
