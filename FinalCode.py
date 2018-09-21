@@ -5,11 +5,15 @@ import csv
 import sqlite3
 
 """
-Creating a class named Database with four methods namely __init__,decorator_fun,table,comparision
+Creating a class named Database with four methods namely __init__(),decorator_fun(),table(),comparision()
 """
 
 
 class Database:
+    """
+    Called on object ceation for Database Class
+    """
+
     def __init__(self):
         database_name = raw_input('Enter the Database Name :')
         database_name = database_name + ".db"
@@ -23,12 +27,19 @@ class Database:
             self.config.read(config_location)
         except Exception as error:
             print error
+    """
+    Decorator Method
+	"""
 
     def decorator_fun(self, func, name):
         print "==============================="
         print name
         print "==============================="
         func()
+
+    """
+    Used to fetch data from tables and CSV and will call comparision()
+	"""
 
     def table(self):
         try:
@@ -45,6 +56,10 @@ class Database:
             print error
         finally:
             self.conn.close()
+
+    """
+	compares Table values and CSV values and writes the result to "Test_Results.csv" file
+	"""
 
     def comparision(self, sec_name):
         self.csv_list = []
@@ -82,4 +97,3 @@ class Database:
 if __name__ == "__main__":
     obj = Database()
     obj.decorator_fun(obj.table, "Comparing Tables and CSV Files")
-	
